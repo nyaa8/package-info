@@ -1,0 +1,45 @@
+name: "build-test"
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - "releases/*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: |
+          npm install
+          npm run all
+  test-auto-resolving:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: |
+          pwd
+          ls
+      - uses: ./
+      - run: echo PACKAGE_AUTHOR= ${{ env.PACKAGE_AUTHOR }}
+      - run: echo PACKAGE_DESCRIPTION= ${{ env.PACKAGE_DESCRIPTION }}
+      - run: echo PACKAGE_LICENSE= ${{ env.PACKAGE_LICENSE }}
+      - run: echo PACKAGE_NAME= ${{ env.PACKAGE_NAME }}
+      - run: echo PACKAGE_VERSION= ${{ env.PACKAGE_VERSION }}
+  test-manual-path:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: |
+          pwd
+          ls
+      - uses: ./
+        with:
+          path: 'package.json'
+      - run: echo PACKAGE_AUTHOR= ${{ env.PACKAGE_AUTHOR }}
+      - run: echo PACKAGE_DESCRIPTION= ${{ env.PACKAGE_DESCRIPTION }}
+      - run: echo PACKAGE_LICENSE= ${{ env.PACKAGE_LICENSE }}
+      - run: echo PACKAGE_NAME= ${{ env.PACKAGE_NAME }}
+      - run: echo PACKAGE_VERSION= ${{ env.PACKAGE_VERSION }}
+
