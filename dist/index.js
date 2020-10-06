@@ -2574,13 +2574,12 @@ function run() {
             const path = core_1.getInput('path')
                 ? process.env.GITHUB_WORKSPACE + '/' + core_1.getInput('path')
                 : yield util_1.findPackageJson(followSymbolicLinks);
-            const packageVersion = yield util_1.extract(path);
-            let fieldKey;
-            for (fieldKey in packageVersion) {
-                const fieldValue = packageVersion[fieldKey];
-                if (!fieldValue)
-                    core_1.exportVariable(`PACKAGE_${fieldKey.toUpperCase()}`, fieldValue);
-            }
+            const packageFile = yield util_1.extract(path);
+            core_1.exportVariable('PACKAGE_AUTHOR', packageFile.author);
+            core_1.exportVariable('PACKAGE_DESCRIPTION', packageFile.description);
+            core_1.exportVariable('PACKAGE_LICENSE', packageFile.license);
+            core_1.exportVariable('PACKAGE_NAME', packageFile.name);
+            core_1.exportVariable('PACKAGE_VERSION', packageFile.version);
         }
         catch (error) {
             core_1.setFailed(error.message);
