@@ -1,0 +1,18 @@
+name: "package-info"
+description: "Extracts various fields from package.json to an environment variable"
+branding:
+	color: orange
+	icon: package
+author: "yunree"
+inputs:
+	path:
+		description: "package.json location"
+		required: false
+	follow-symlinks:
+		description: "Indicates whether to follow symbolic links"
+		required: false
+		default: "true"
+runs:
+	using: "node12"
+	main: "dist/index.js"
+
