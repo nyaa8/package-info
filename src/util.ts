@@ -1,11 +1,11 @@
 import { create } from '@actions/glob';
 
 export interface PackageFile {
-	version: string;
-	name: string;
-	description: string;
 	author: string;
+	description: string;
 	license: string;
+	name: string;
+	version: string;
 }
 
 const patterns = ['**/package.json', '!**/node_modules/'].join('\n');

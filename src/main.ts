@@ -8,14 +8,13 @@ async function run(): Promise<void> {
 			? process.env.GITHUB_WORKSPACE + '/' + getInput('path')
 			: await findPackageJson(followSymbolicLinks);
 
-		const packageVersion: PackageFile = await extract(path);
+		const packageFile: PackageFile = await extract(path);
 
-		let fieldKey: keyof typeof packageVersion;
-		for (fieldKey in packageVersion) {
-			const fieldValue = packageVersion[fieldKey];
-
-			if (!fieldValue) exportVariable(`PACKAGE_${fieldKey.toUpperCase()}`, fieldValue);
-		}
+		exportVariable('PACKAGE_AUTHOR', packageFile.author);
+		exportVariable('PACKAGE_DESCRIPTION', packageFile.description);
+		exportVariable('PACKAGE_LICENSE', packageFile.license);
+		exportVariable('PACKAGE_NAME', packageFile.name);
+		exportVariable('PACKAGE_VERSION', packageFile.version);
 	} catch (error) {
 		setFailed(error.message);
 	}
