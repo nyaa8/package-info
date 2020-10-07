@@ -28,7 +28,7 @@
 		"version"
 	],
 	"author": "yunree<contrib@yunree.net>",
-	"license": "MIT",
+	"license": "BSD-2-Clause",
 	"dependencies": {
 		"@actions/core": "^1.2.6",
 		"@actions/glob": "^0.1.0"
