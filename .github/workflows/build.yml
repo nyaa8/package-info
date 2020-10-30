@@ -1,0 +1,32 @@
+name: "build"
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Build 
+        run: |
+          npm install
+          npm run all
+      - name: Get version
+        uses: ./
+      - name: Commit files
+        run: |
+          git config --local user.email "github+action@nyaa.science"
+          git config --local user.name "GitHub Action [nyaa]"
+          git add dist/ || return 0
+          git commit -m "chore(build): ${{ env.PACKAGE_VERSION }}" || exit 0
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
