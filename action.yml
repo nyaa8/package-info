@@ -3,7 +3,7 @@ description: "Extracts various fields from package.json to an environment variab
 branding:
   color: orange
   icon: package
-author: "yunree"
+author: "nyaayaya"
 inputs:
   path:
     description: "package.json location"

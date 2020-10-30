@@ -12,7 +12,7 @@ A GitHub Action extracting various fields from package.json and exporting them a
 ### Usage
 
 ```yaml
-- uses: yunree/package-info@v1
+- uses: nyaayaya/package-info@v1
   with:
     path: 'uwu/package.json' # Optional
     follow-symlinks: 'false' # Optional

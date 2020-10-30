@@ -12,7 +12,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/yunree/package-info.git"
+		"url": "git+https://github.com/nyaayaya/package-info.git"
 	},
 	"keywords": [
 		"actions",
@@ -27,7 +27,7 @@
 		"package",
 		"version"
 	],
-	"author": "yunree<contrib@yunree.net>",
+	"author": "nyaayaya<contrib@nyaa.science>",
 	"license": "BSD-2-Clause",
 	"dependencies": {
 		"@actions/core": "^1.2.6",
